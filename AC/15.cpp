@@ -1,3 +1,4 @@
+//contains duplicate 
 // created by @AM
 #include <bits/stdc++.h>
 
