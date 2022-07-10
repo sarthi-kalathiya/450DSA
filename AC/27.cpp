@@ -6,35 +6,34 @@ public:
     vector<vector<int>> threeSum(vector<int> &nums)
     {
         int n = nums.size();
-        vector<int> &arr = nums;
-        set<vector<int>> seet;
-        sort(arr.begin(), arr.end());
-        vector<vector<int>> ans;
+        set<vector<int>> unique_res;
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> answer;
         vector<int> v(3);
-        int l, r;
+        int left, right, s;
         for (int i = 0; i < n; ++i)
         {
-            l = i + 1;
-            r = n - 1;
-            int s = arr[i]*-1; //we have to find for all pairs with this in rest of the array 
+            left = i + 1;
+            right = n - 1;
+            s = nums[i] * -1;
 
-            while (l < r)
+            while (left < right)
             {
-                if (arr[l] + arr[r] == s)
+                if (nums[left] + nums[right] == s)
                 {
-                    v[0] = arr[i];
-                    v[1] = arr[r--]; //once a one pair is found for 2 sum there can be other pair as well 
-                    v[2] = arr[l++];
-                    sort(v.begin(), v.end());
-                    seet.insert(v); //we are making our result unique becauseif not then try it (0,0,0,0)
+                    v[0] = nums[i];
+                    v[1] = nums[right--];
+                    v[2] = nums[left++];
+                    // sort(v.begin(), v.end()); //it won't make any difference in ans checker so i just remove it to make it faster
+                    unique_res.insert(v);
                 }
-                else if (arr[l] + arr[r] < s)
-                    ++l;
+                else if (nums[left] + nums[right] < s)
+                    ++left;
                 else
-                    --r;
+                    --right;
             }
         }
-        copy(seet.begin(),seet.end(),back_inserter(ans)); //back_inserter is necessary to copy via copy stl
-        return ans;
+        copy(unique_res.begin(), unique_res.end(), back_inserter(answer));
+        return answer;
     }
 };
