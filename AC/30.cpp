@@ -1,3 +1,4 @@
+//kth smallest in distinct array
 class Solution{
     public:
     // arr : given array
