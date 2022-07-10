@@ -28,19 +28,13 @@ public:
                     seet.insert(v);
                 }
                 else if (arr[l] + arr[r] < s)
-                {
                     l++;
-                }
                 else
-                {
                     r--;
-                }
             }
         }
         for (auto x : seet)
-        {
             ans.push_back(x);
-        }
         return ans;
     }
 };
