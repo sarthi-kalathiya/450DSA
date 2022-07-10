@@ -8,19 +8,18 @@ public:
         set<vector<int>> seet;
         sort(arr.begin(), arr.end());
         vector<vector<int>> ans;
+        vector<int> v(3);
         int l, r;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; ++i)
         {
             l = i + 1;
             r = n - 1;
-            int s = 0;
-            s -= arr[i];
+            int s = arr[i]*-1;
 
             while (l < r)
             {
                 if (arr[l] + arr[r] == s)
                 {
-                    vector<int> v(3);
                     v[0] = arr[i];
                     v[1] = arr[r--];
                     v[2] = arr[l++];
@@ -28,13 +27,12 @@ public:
                     seet.insert(v);
                 }
                 else if (arr[l] + arr[r] < s)
-                    l++;
+                    ++l;
                 else
-                    r--;
+                    --r;
             }
         }
-        for (auto x : seet)
-            ans.push_back(x);
+        copy(seet.begin(),seet.end(),back_inserter(ans));
         return ans;
     }
 };
