@@ -1,3 +1,4 @@
+// search in rotated array with target
 // created by @AM
 #include <bits/stdc++.h>
 
