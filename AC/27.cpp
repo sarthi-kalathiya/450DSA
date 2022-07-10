@@ -3,37 +3,44 @@ class Solution
 public:
     vector<vector<int>> threeSum(vector<int> &nums)
     {
-        vector<vector<int>> ans;
         int n = nums.size();
-        set<vector<int>> seeting;
-        sort(nums.begin(), nums.end());
+        vector<int> &arr = nums;
+        set<vector<int>> seet;
+        sort(arr.begin(), arr.end());
+        vector<vector<int>> ans;
+        int l, r;
         for (int i = 0; i < n; i++)
         {
-            int l, r;
             l = i + 1;
             r = n - 1;
-            int s = nums[i] * -1;
+            int s = 0;
+            s -= arr[i];
 
             while (l < r)
             {
-                if (nums[l] + nums[r] == s)
+                if (arr[l] + arr[r] == s)
                 {
                     vector<int> v(3);
-                    v[0] = nums[i];
-                    v[1] = nums[r];
-                    v[2] = nums[l];
+                    v[0] = arr[i];
+                    v[1] = arr[r--];
+                    v[2] = arr[l++];
                     sort(v.begin(), v.end());
-                    seeting.insert(v);
+                    seet.insert(v);
+                }
+                else if (arr[l] + arr[r] < s)
+                {
                     l++;
+                }
+                else
+                {
                     r--;
                 }
-                else if (nums[l] + nums[r] < s)
-                    l++;
-                else
-                    r--;
             }
         }
-        copy(seeting.begin(), seeting.end(), back_inserter(ans));
+        for (auto x : seet)
+        {
+            ans.push_back(x);
+        }
         return ans;
     }
 };
