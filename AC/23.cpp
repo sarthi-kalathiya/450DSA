@@ -1,3 +1,33 @@
+//actual ans
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& ar) {
+        
+        int n = ar.size();
+        int left[n];
+        int right[n];
+        int product = 1;
+        left[0] = 1;
+        for(int i=1;i<n;i++) {
+            product = product*ar[i-1];
+            left[i] = product;
+        }
+        right[n-1] = 1;
+        product = 1;
+        for(int i=n-2;i>=0;i--) {
+            product = product*ar[i+1];
+            right[i] = product;
+        }
+        vector<int> v;
+        for(int i=0;i<n;i++) {
+            v.push_back(right[i]*left[i]);
+        }
+        return v;
+        
+    }
+};
+
+
 // product of array exept self
 // created by @AM
 class Solution
